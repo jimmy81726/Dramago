@@ -4,7 +4,8 @@ import Home from "../pages/front/Home";
 import DramaList from "../pages/front/DramaList";
 import DramaDetail from "../pages/front/DramaDetail";
 import AdminLayout from "../layouts/AdminLayout";
-import Dashboard from "../pages/front/admin/Dashboard";
+import Dashboard from "../pages/admin/Dashboard";
+import DramaCreate from "../pages/front/DramaCreate";
 
 export const router = createBrowserRouter([
   {
@@ -20,9 +21,10 @@ export const router = createBrowserRouter([
         element: <DramaList />,
       },
       {
-        path: "drama/:id",
+        path: "dramas/:id",
         element: <DramaDetail />,
       },
+      { path: "dramas/create", element: <DramaCreate /> },
     ],
   },
   {
