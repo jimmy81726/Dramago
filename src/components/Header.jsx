@@ -1,12 +1,21 @@
 import { signOut } from "firebase/auth";
 import { useAuth } from "../context/AuthContext";
 import { auth } from "../firebase/firebase";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import FullPageLoading from "./FullPageSpinner";
 const Header = ({ openLoginModal, openRegisterModal }) => {
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const { currentUser, isLoading } = useAuth();
   if (isLoading) {
-    return null;
+    return <FullPageLoading />;
   }
 
   return (
@@ -21,14 +30,7 @@ const Header = ({ openLoginModal, openRegisterModal }) => {
         {currentUser ? (
           <div>
             <p>歡迎 {currentUser?.displayName}</p>
-            <button
-              onClick={() => {
-                console.log("登出按鈕被點擊");
-                signOut(auth);
-              }}
-            >
-              登出
-            </button>
+            <button onClick={handleLogout}>登出</button>
           </div>
         ) : (
           <div>

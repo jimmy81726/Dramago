@@ -19,10 +19,12 @@ const LoginModal = ({ show, onClose, openRegisterModal }) => {
         password
       );
       console.log("登入成功", userCredential.user);
+
       reset();
       onClose();
     } catch (error) {
       console.log("登入失敗", error);
+      alert("登入失敗，請重新嘗試");
     }
   };
 

@@ -24,6 +24,7 @@ const RegisterModal = ({ show, onClose, openLoginModal }) => {
         password
       );
       const user = userCredient.user;
+      //有指定uid用setDoc，沒有指定隨機用addDoc
       await setDoc(doc(db, "users", user.uid), {
         displayName: String(displayName),
         email: user.email,
