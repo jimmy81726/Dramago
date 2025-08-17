@@ -18,11 +18,23 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (user) {
-        const docSnap = await getDoc(doc(db, "users", user.uid));
-        setUserData(docSnap.exists() ? docSnap.data() : null);
+        try {
+          const docRef = doc(db, "users", user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            setUserData(docSnap.data());
+          } else {
+            setUserData(null);
+          }
+        } catch (error) {
+          console.error("抓取使用者資料時發生錯誤:", error);
+          setUserData(null);
+        }
       } else {
+        // 未登入
         setUserData(null);
       }
+      // 確保 userData 載入完成後才設置 isLoading 為 false
       setIsLoading(false);
     });
     return () => unsubscribe();

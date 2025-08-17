@@ -55,58 +55,76 @@ const DramaCreate = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="card p-4 shadow-sm">
-        <h2 className="mb-4">發起聚會</h2>
+    <div className="container mx-auto px-4 py-8">
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-2xl font-bold mb-6">發起聚會</h2>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-3">
-            <label className="form-label">活動名稱</label>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              活動名稱
+            </label>
             <input
               type="text"
-              className={`form-control ${errors.title ? "is-invalid" : ""}`}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.title ? "border-red-500" : "border-gray-300"
+              }`}
               {...register("title", {
                 required: "請輸入活動名稱",
               })}
             />
             {errors.title && (
-              <p className="text-danger">{errors.title.message}</p>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.title.message}
+              </p>
             )}
           </div>
 
-          <div className="mb-3">
-            <label className="form-label">日期</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              日期
+            </label>
             <input
               type="date"
-              className={`form-control ${errors.date ? "is-invalid" : ""}`}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.date ? "border-red-500" : "border-gray-300"
+              }`}
               {...register("date", {
                 required: "請選擇日期",
               })}
             />
             {errors.date && (
-              <p className="text-danger">{errors.date.message}</p>
+              <p className="mt-1 text-sm text-red-600">{errors.date.message}</p>
             )}
           </div>
 
-          <div className="mb-3">
-            <label className="form-label">地點</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              地點
+            </label>
             <input
               type="text"
-              className={`form-control ${errors.location ? "is-invalid" : ""}`}
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.location ? "border-red-500" : "border-gray-300"
+              }`}
               {...register("location", {
                 required: "請輸入地點",
               })}
             />
             {errors.location && (
-              <p className="text-danger">{errors.location.message}</p>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.location.message}
+              </p>
             )}
           </div>
 
-          <div className="mb-3">
-            <label className="form-label">活動說明</label>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              活動說明
+            </label>
             <textarea
-              className={`form-control ${
-                errors.description ? "is-invalid" : ""
+              className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                errors.description ? "border-red-500" : "border-gray-300"
               }`}
               rows="4"
               {...register("description", {
@@ -114,20 +132,27 @@ const DramaCreate = () => {
               })}
             />
             {errors.description && (
-              <p className="text-danger">{errors.description.message}</p>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.description.message}
+              </p>
             )}
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            送出
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => navigate("/list")}
-          >
-            取消
-          </button>
+          <div className="flex gap-4">
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              送出
+            </button>
+            <button
+              type="button"
+              className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              onClick={() => navigate("/list")}
+            >
+              取消
+            </button>
+          </div>
         </form>
       </div>
     </div>

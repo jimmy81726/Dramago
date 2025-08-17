@@ -4,6 +4,7 @@ import { db } from "../../firebase/firebase";
 import { useState } from "react";
 import { useEffect } from "react";
 import FullPageSpinner from "../../components/FullPageSpinner";
+import dayjs from "dayjs";
 
 const DramaDetail = () => {
   const { id } = useParams();
@@ -42,26 +43,38 @@ const DramaDetail = () => {
   } = drama;
 
   return (
-    <div className="container py-4">
-      <h2 className="mb-3">{title}</h2>
-      <p>
-        <strong>狀態：</strong> {status}
-      </p>
-      <p>
-        <strong>活動時間：</strong> {new Date(date).toLocaleString("zh-TW")}
-      </p>
-      <p>
-        <strong>地點：</strong> {location}
-      </p>
-      <p>
-        <strong>介紹：</strong> {description}
-      </p>
-      <p>
-        <strong>發起人：</strong> {createdByName}
-      </p>
-      <p>
-        <strong>參與人數：</strong> {participants?.length ?? 0}
-      </p>
+    <div className="container mx-auto px-4 py-8">
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-2xl font-bold mb-6">{title}</h2>
+        <div className="space-y-4">
+          <p className="flex items-center">
+            <span className="font-semibold w-24">狀態：</span>
+            <span className="px-2 py-1 rounded-full text-sm bg-blue-100 text-blue-800">
+              {status}
+            </span>
+          </p>
+          <p className="flex items-center">
+            <span className="font-semibold w-24">活動時間：</span>
+            <span>{dayjs(date).format("YYYY-MM-DD HH:mm")}</span>
+          </p>
+          <p className="flex items-center">
+            <span className="font-semibold w-24">地點：</span>
+            <span>{location}</span>
+          </p>
+          <p className="flex items-start">
+            <span className="font-semibold w-24">介紹：</span>
+            <span className="flex-1">{description}</span>
+          </p>
+          <p className="flex items-center">
+            <span className="font-semibold w-24">發起人：</span>
+            <span>{createdByName}</span>
+          </p>
+          <p className="flex items-center">
+            <span className="font-semibold w-24">參與人數：</span>
+            <span>{participants?.length ?? 0}</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

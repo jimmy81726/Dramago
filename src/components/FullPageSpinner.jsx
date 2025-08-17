@@ -1,12 +1,11 @@
 export default function FullPageSpinner() {
   return (
-    <div
-      className="position-fixed top-0 start-0 w-100 
-        h-100 justify-content-center align-items-center bg-white bg-opacity-75 "
-      style={{ zIndex: 1000 }}
-    >
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
+    <div className="fixed inset-0 w-full h-full flex justify-center items-center bg-white bg-opacity-75 z-50">
+      <div
+        className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
       </div>
     </div>
   );
